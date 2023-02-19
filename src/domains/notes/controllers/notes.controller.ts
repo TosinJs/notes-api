@@ -15,7 +15,10 @@ import { CreateNoteDto } from '../dto/create-note.dto';
 import { UpdateNoteDto } from '../dto/update-note.dto';
 import { User } from '../decorators/user.decorator';
 import { ValidateMongoId } from '../pipes/mongoid.pipe';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiTags('Notes')
+@ApiBearerAuth()
 @Controller('notes')
 export class NotesController {
   constructor(private readonly noteService: NotesService) {}

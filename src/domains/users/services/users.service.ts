@@ -6,7 +6,7 @@ import { JwtTokenService } from './jwt.service';
 import {
   ConfilctError,
   InternalServerError,
-} from 'src/utils/error-response.utils';
+} from '../../../utils/error-response.utils';
 
 @Injectable()
 export class UsersService {
@@ -19,7 +19,7 @@ export class UsersService {
     try {
       const user = await this.dbService.createUser(createUserDto);
       return this.jwtService.generateIdToken(
-        { id: user.id, username: user.username },
+        { id: user._id.toString(), username: user.username },
         '24h',
       );
     } catch (error) {
@@ -48,7 +48,7 @@ export class UsersService {
       );
     }
     return this.jwtService.generateIdToken(
-      { id: user.id, username: user.username },
+      { id: user._id.toString(), username: user.username },
       '24h',
     );
   }
