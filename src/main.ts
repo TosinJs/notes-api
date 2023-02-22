@@ -14,19 +14,21 @@ async function bootstrap() {
     }),
   );
 
+  app.setGlobalPrefix('api');
+  app.enableCors();
+  app.useGlobalFilters(new AllExceptionsFilter());
+
   //Swagger Config
   const config = new DocumentBuilder()
     .setTitle('Notes API')
     .setDescription('Documentation for the Notes Project')
     .setVersion('1.0')
+    .setBasePath('api')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  app.setGlobalPrefix('api');
-  app.enableCors();
-  app.useGlobalFilters(new AllExceptionsFilter());
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
