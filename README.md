@@ -1,42 +1,33 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This repository contains the API logic for a Notes Application, built for the Uptick Backnd Developer challenge
 
-## Installation
+## Deployment
+A live deployment of this application can be found @ https://notes-api-u6bf.onrender.com/api
+
+## Documentation
+The documentation of this application can be found @:
+<li>Open Api @ https://notes-api-u6bf.onrender.com/api/docs</li>
+
+![Docs-Notes](https://user-images.githubusercontent.com/68669102/220770952-81b6b6f3-c18b-483c-a2c6-0e6c07241397.PNG)
+
+## Run the Application Locally
 
 ```bash
+# Clone the repository
+$ git clone https://github.com/TosinJs/notes-api.git
+
+# Install dependencies
 $ npm install
-```
 
-## Running the app
+# configuration 
+# Create .env file in the root folder
+$ touch .env
 
-```bash
-# development
-$ npm run start
+# populate the .env file with your files
+$ MONGO_URI = "your mongodb connection string"
+$ JWT_SECRET = "your JWT secret"
+$ SALT_ROUNDS = "number of salt rounds"
 
 # watch mode
 $ npm run start:dev
@@ -44,7 +35,6 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-
 ## Test
 
 ```bash
@@ -53,21 +43,21 @@ $ npm run test
 
 # e2e tests
 $ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
-## Support
+## Application Flow
+<p>The business logic of this application is in the src/domains folder. The business logic is split into two services: </p>
+<li>Users</li>
+<li>Notes</li>
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Users
+<p>The Users service contains all the logic for registeration and authentication of users </p>
+<p>A JWT is retured to the user when they signup or login. The JWT is used to access the <strong>Notss</strong> service</p>
+<p>Make a POST request with jwt credentials @ https://notes-api-u6bf.onrender.com/api/users/login to get the bearer token</p>
 
-## Stay in touch
+![login flow](https://user-images.githubusercontent.com/68669102/211182773-d4f712ac-9c4f-4520-97c1-48a918b3a7eb.PNG)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+### Notes
+<p>The Notes service contains all the logic for creating, getting, updating and deleting Notes</p>
+<p>All the endpoints in the notes service are protected endpoints </p>
+<p>The JWT is used to access the <strong>Notes</strong> service. Send this JWT with every request to a notes endpoint</p>
