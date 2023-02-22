@@ -52,12 +52,12 @@ $ npm run test:e2e
 
 ### Users
 <p>The Users service contains all the logic for registeration and authentication of users </p>
-<p>A JWT is retured to the user when they signup or login. The JWT is used to access the <strong>Notess</strong> service</p>
+<p>A JWT is retured to the user when they signup or login. The JWT is used to access the <strong>Notss</strong> service</p>
 <p>Make a POST request with jwt credentials @ https://notes-api-u6bf.onrender.com/api/users/login to get the bearer token</p>
 
 ![login flow](https://user-images.githubusercontent.com/68669102/211182773-d4f712ac-9c4f-4520-97c1-48a918b3a7eb.PNG)
 
 ### Notes
-<p>The Brands service contains all the logic for creating, getting, updating and deleting Notes</p>
+<p>The Notes service contains all the logic for creating, getting, updating and deleting Notes</p>
 <p>All the endpoints in the notes service are protected endpoints </p>
-<p>The JWT is used to access the <strong>Notes</strong> service. Send this JWT with every request to a brand endpoint</p>
+<p>The JWT is used to access the <strong>Notes</strong> service. Send this JWT with every request to a notes endpoint</p>
